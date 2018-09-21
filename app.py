@@ -15,7 +15,7 @@ app.layout = html.Div([
     html.Div(dcc.Input(id='input-box', 
                     type='text',
                     value='',
-                    placeholder='Nom! Nom! Nom!',
+                    placeholder='What are you looking for?',
                     style = {'width': '100%'}         
             )
         ),
