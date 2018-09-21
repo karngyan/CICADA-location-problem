@@ -1,11 +1,11 @@
-import dash
+import dash,string,random
 import dash_core_components as dcc
 import dash_html_components as html
 from flask import make_response,Response
 
 app = dash.Dash()
 server = app.server
-app.title = 'Cicada Location | Eat the ****** to get the flag'
+app.title = 'Cicada Location | v2'
 app.css.append_css({'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'})
 app.config['suppress_callback_exceptions']=True
 
@@ -33,10 +33,10 @@ app.layout = html.Div([
 
 ], style = {'position':'absolute', 'top': '50%', 'left': '50%' ,'transform' : 'translate(-50%,-50%)'})
 
-@server.route('/flag')
+@server.route('/Laxmi_Canteen_has_the_best_Dal_in_BIT')
 def setcookie():
-    resp = make_response('Congrats! you finally got it.')
-    resp.set_cookie('flag', 'time_to_run_to_Laxmi')
+    resp = make_response('Alright! You have come this far. Kudos to you. To get the final flag you need to cook it up.')
+    resp.set_cookie('flag', 'C0okies_are_not_biscuits')
     return resp
 
 
@@ -47,12 +47,14 @@ def setcookie():
 def update_output(n_clicks, value):
     if(n_clicks > 0):
         if(value == 'flag'):
-            return 'Congrats! You got it, right? No? ;)\nMove to ./flag'
+            return 'Congrats! This was an easy one, here is the flag: Laxmi_Canteen_has_the_best_Dal_in_BIT'
         else:
-            return 'Nope!'
+            return ''.join(random.choices(string.ascii_uppercase + string.digits, k=20))
         
 
 
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+
