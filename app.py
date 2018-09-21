@@ -1,7 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from flask import make_response
+from flask import make_response,Response
 
 app = dash.Dash()
 server = app.server
@@ -26,7 +26,7 @@ app.layout = html.Div([
                 id='button',
             ),
             html.Div(id='output-container-button',
-                children='Enter a value and press submit'
+                children='Enter a value and press submit!'
             )
         ],
     )
@@ -39,16 +39,17 @@ def setcookie():
     resp.set_cookie('flag', 'time_to_run_to_Laxmi')
     return resp
 
+
 @app.callback(
     dash.dependencies.Output('output-container-button', 'children'),
     [dash.dependencies.Input('button', 'n_clicks')],
     [dash.dependencies.State('input-box', 'value')])
 def update_output(n_clicks, value):
-    if(value == 'flag'):
-        setcookie()
-        return 'Congrats! You got it, right? No? ;)\nMove to ./flag'
-    else:
-        return 'Enter a value and press submit'
+    if(n_clicks > 0):
+        if(value == 'flag'):
+            return 'Congrats! You got it, right? No? ;)\nMove to ./flag'
+        else:
+            return 'Nope!'
         
 
 
